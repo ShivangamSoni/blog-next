@@ -1,15 +1,15 @@
 import Head from "next/head";
 
-import SignIn from "../src/Auth/SignIn/SignIn";
+import Register from "../src/Auth/Register/Register";
 
 export default function Home() {
   return (
     <>
       <Head>
-        <title>SignIn: The Blog</title>
+        <title>Register: The Blog</title>
       </Head>
 
-      <SignIn />
+      <Register />
     </>
   );
 }

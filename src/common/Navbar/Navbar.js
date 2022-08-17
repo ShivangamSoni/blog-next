@@ -21,6 +21,12 @@ const Links = [
     label: "SignIn",
     type: "button",
   },
+  {
+    id: 3,
+    href: "/register",
+    label: "Regsiter",
+    type: "button",
+  },
 ];
 
 const Navbar = ({ toggleNav, navActive }) => {
