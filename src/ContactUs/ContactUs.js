@@ -3,8 +3,12 @@ import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 
 import styles from "./styles.module.css";
+import { useDispatch } from "../Context/state";
+import { showNotification } from "../Context/Notification/actions";
 
 const ContactUs = () => {
+  const dispatch = useDispatch();
+
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [name, setName] = useState("");
@@ -68,9 +72,45 @@ const ContactUs = () => {
     const contactDetails = { name, email, message };
 
     try {
+      dispatch(
+        showNotification({
+          title: "Sending Message....",
+          message: "Your Message is o its way.",
+          status: "pending",
+        }),
+      );
+
       const { data } = await axios.post("/api/contact", contactDetails);
+
+      if (data.success) {
+        dispatch(
+          showNotification({
+            title: "Success",
+            message: data.message,
+            status: "success",
+          }),
+        );
+
+        setEmail("");
+        setName("");
+        setMessage("");
+      } else {
+        dispatch(
+          showNotification({
+            title: "Error!",
+            message: data.message,
+            status: "error",
+          }),
+        );
+      }
     } catch (e) {
-      setFormError(e.response.data.message);
+      dispatch(
+        showNotification({
+          title: "Error!",
+          message: e.response.data.message,
+          status: "error",
+        }),
+      );
     }
   };
 

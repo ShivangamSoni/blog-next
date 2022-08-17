@@ -1,0 +1,78 @@
+.container {
+  width: 450px;
+  max-width: 80%;
+
+  background-color: #ffdb9b;
+  color: #ce8500;
+  border-radius: 0.2rem 0 0 0.2rem;
+  border-left: 8px solid #ffa502;
+  --btn: #ffd080;
+
+  padding: 1rem 2rem;
+
+  position: fixed;
+  top: 10px;
+  right: 0;
+  z-index: 100;
+  overflow: hidden;
+
+  animation: slide 1000ms ease-in-out forwards;
+}
+
+.container.success {
+  background-color: hsl(150, 100%, 80%);
+  color: hsl(150, 100%, 40%);
+  border-left-color: hsl(150, 100%, 50%);
+  --btn: hsl(150, 100%, 75%);
+}
+
+.container.error {
+  background-color: hsl(0, 100%, 80%);
+  color: hsl(0, 100%, 40%);
+  border-left-color: hsl(10, 100%, 50%);
+  --btn: hsl(0, 100%, 75%);
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(100%);
+  }
+  50% {
+    transform: translateX(-10%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.title {
+  font-weight: 600;
+}
+
+.msg {
+  padding-left: 10px;
+  font-size: 0.9rem;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  cursor: pointer;
+  background-color: var(--btn);
+  padding: 1rem 1rem;
+  transition: background-color 200ms linear;
+}
+
+.closeBtn:hover {
+  background-image: linear-gradient(
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0.5)
+  );
+}
+
+.closeBtn svg {
+  color: inherit;
+  font-size: 1.3rem;
+}

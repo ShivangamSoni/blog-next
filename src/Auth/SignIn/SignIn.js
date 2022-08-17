@@ -5,10 +5,14 @@ import { useRouter } from "next/router";
 
 import { signIn } from "next-auth/react";
 
+import { useDispatch } from "../../Context/state";
+import { showNotification } from "../../Context/Notification/actions";
+
 import styles from "../styles.module.css";
 
 const SignIn = () => {
   const { replace } = useRouter();
+  const dispatch = useDispatch();
 
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -65,6 +69,14 @@ const SignIn = () => {
 
     if (!validateForm()) return;
 
+    dispatch(
+      showNotification({
+        title: "Signing In",
+        message: "Please wait...",
+        status: "pending",
+      }),
+    );
+
     const response = await signIn("credentials", {
       redirect: false,
       email,
@@ -72,8 +84,21 @@ const SignIn = () => {
     });
 
     if (!response.ok) {
-      setFormError(response.error);
+      dispatch(
+        showNotification({
+          title: "Error!",
+          message: response.error,
+          status: "error",
+        }),
+      );
     } else {
+      dispatch(
+        showNotification({
+          title: "Success!",
+          message: "Logged In Successfully",
+          status: "success",
+        }),
+      );
       replace("/dashboard");
     }
   };

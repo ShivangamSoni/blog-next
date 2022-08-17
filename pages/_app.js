@@ -1,8 +1,13 @@
+import Head from "next/head";
+
 import { SessionProvider } from "next-auth/react";
 
-import Head from "next/head";
-import Layout from "../src/common/Layout/Layout";
 import "../styles/globals.css";
+
+import StateProvider from "../src/Context/state";
+import reducer from "../src/Context/reducer";
+
+import Layout from "../src/common/Layout/Layout";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
@@ -16,9 +21,11 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
       </Head>
 
       <SessionProvider session={session}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <StateProvider reducer={reducer}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </StateProvider>
       </SessionProvider>
     </>
   );

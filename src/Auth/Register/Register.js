@@ -5,10 +5,14 @@ import Link from "next/link";
 
 import axios from "axios";
 
+import { useDispatch } from "../../Context/state";
+
 import styles from "../styles.module.css";
+import { showNotification } from "../../Context/Notification/actions";
 
 const Register = () => {
   const { push } = useRouter();
+  const dispatch = useDispatch();
 
   const [name, setName] = useState("");
   const [userName, setUserName] = useState("");
@@ -23,7 +27,6 @@ const Register = () => {
   const [cPasswordError, setCPasswordError] = useState("");
 
   const [formError, setFormError] = useState("");
-  const [formSuccess, setFormSuccess] = useState("");
 
   const nameChange = (e) => setName(e.target.value);
   const userNameChange = (e) => setUserName(e.target.value);
@@ -133,12 +136,34 @@ const Register = () => {
     const newUser = { name, email, username: userName, password };
 
     try {
+      dispatch(
+        showNotification({
+          title: "Registering",
+          message: "Please Wait...",
+          status: "pending",
+        }),
+      );
+
       const { data } = await axios.post("/api/auth/register", newUser);
 
       if (!data.success) {
+        dispatch(
+          showNotification({
+            title: "Success",
+            message: data.message,
+            status: "success",
+          }),
+        );
+
         setFormError(data.message);
       } else {
-        setFormSuccess(data.message);
+        dispatch(
+          showNotification({
+            title: "Error!",
+            message: data.message,
+            status: "error",
+          }),
+        );
 
         setName("");
         setUserName("");
@@ -149,7 +174,13 @@ const Register = () => {
         setTimeout(() => push("/signin"), 1000);
       }
     } catch (e) {
-      setFormError(e.response.data.message);
+      dispatch(
+        showNotification({
+          title: "Error!",
+          message: e.response.data.message,
+          status: "error",
+        }),
+      );
     }
   };
 
@@ -177,9 +208,6 @@ const Register = () => {
     <form className={styles.form} onSubmit={handleRegister} noValidate={true}>
       <h2 className={styles.title}>Join Now.</h2>
       {formError ? <span className={styles.error}>{formError}</span> : null}
-      {formSuccess ? (
-        <span className={styles.success}>{formSuccess}</span>
-      ) : null}
 
       <div className={styles.formGroup}>
         <input
