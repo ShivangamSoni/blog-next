@@ -40,7 +40,7 @@ const handler = async (req, res) => {
       const result = await db.collection("users").insertOne({
         name,
         username,
-        email,
+        email: email.toLowerCase(),
         password: hashedPassword,
       });
 

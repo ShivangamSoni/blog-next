@@ -75,7 +75,7 @@ const ContactUs = () => {
       dispatch(
         showNotification({
           title: "Sending Message....",
-          message: "Your Message is o its way.",
+          message: "Your Message is on its way.",
           status: "pending",
         }),
       );

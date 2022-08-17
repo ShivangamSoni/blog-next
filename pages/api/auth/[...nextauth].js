@@ -16,7 +16,7 @@ export const authOptions = {
         const usersCollection = client.db().collection("users");
 
         const user = await usersCollection.findOne({
-          email: credentials.email,
+          email: credentials.email.toLowerCase(),
         });
 
         if (!user) {
