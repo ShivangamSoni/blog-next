@@ -146,22 +146,12 @@ const Register = () => {
 
       const { data } = await axios.post("/api/auth/register", newUser);
 
-      if (!data.success) {
+      if (data.success) {
         dispatch(
           showNotification({
             title: "Success",
             message: data.message,
             status: "success",
-          }),
-        );
-
-        setFormError(data.message);
-      } else {
-        dispatch(
-          showNotification({
-            title: "Error!",
-            message: data.message,
-            status: "error",
           }),
         );
 
@@ -172,6 +162,16 @@ const Register = () => {
         setCPassword("");
 
         setTimeout(() => push("/signin"), 1000);
+      } else {
+        dispatch(
+          showNotification({
+            title: "Error!",
+            message: data.message,
+            status: "error",
+          }),
+        );
+
+        setFormError(data.message);
       }
     } catch (e) {
       dispatch(

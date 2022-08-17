@@ -1,8 +1,14 @@
-import Link from "next/link";
 import { useEffect, useState } from "react";
+
+import Link from "next/link";
+
+import { GiHamburgerMenu } from "react-icons/gi";
+import { CgClose } from "react-icons/cg";
+
 import useMediaQuery from "../../utils/useMediaQuery";
-import Navbar from "../Navbar/Navbar";
+
 import styles from "./styles.module.css";
+import Navbar from "../Navbar/Navbar";
 
 const Header = () => {
   const [navActive, setNavActive] = useState(true);
@@ -29,7 +35,9 @@ const Header = () => {
             type="button"
             onClick={toggleNav}
             className={styles.hamburger}
-          ></button>
+          >
+            {navActive ? <CgClose /> : <GiHamburgerMenu />}
+          </button>
         ) : null}
       </div>
 
