@@ -12,25 +12,32 @@
 }
 
 .formGroup {
-  width: 450px;
+  width: 650px;
   max-width: 80%;
 }
 
-.formGroup input {
+.formGroup input,
+.formGroup textarea {
   appearance: none;
   border: none;
   display: block;
-  width: 100%;
+  width: 100% !important;
   color: #333;
   padding: 0.5em 1em;
   margin-top: 1rem;
-  border-radius: 5em;
+  border-radius: 3px;
   outline: 0.1em solid currentColor;
 }
 
-.formGroup input:focus {
+.formGroup input:focus,
+.formGroup textarea:focus {
   outline: 0.15em solid hsl(210, 100%, 60%);
   box-shadow: 0 0 0.3em hsl(210, 100%, 60%);
+}
+
+.formGroup textarea {
+  resize: none;
+  height: 150px !important;
 }
 
 .error {
@@ -64,17 +71,4 @@
   margin: 1rem 0;
   padding: 0.5em 5em;
   cursor: pointer;
-}
-
-.form span {
-  color: #333;
-}
-
-.link {
-  text-decoration: none;
-  color: hsl(210, 100%, 60%);
-}
-
-.link:hover {
-  border-bottom: 0.15em solid;
 }
