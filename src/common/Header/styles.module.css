@@ -1,0 +1,41 @@
+.header {
+  text-align: center;
+  padding: 2rem 0 0;
+  border-bottom: 0.15rem solid hsl(0, 0%, 80%);
+}
+
+.brand {
+  cursor: pointer;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+}
+
+.brandLink {
+  text-decoration: none;
+  outline: none;
+  color: hsl(0, 0%, 0%);
+}
+
+.brand > span {
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 300;
+  transform: rotate(-90deg) translate(0.4rem, 1rem);
+}
+
+@media screen and (max-width: 770px) {
+  .header {
+    padding: 1rem 0 0;
+  }
+
+  .header div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .hamburger {
+    cursor: pointer;
+    margin-right: 1rem;
+  }
+}

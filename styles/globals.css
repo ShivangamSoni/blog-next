@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@500&family=Montserrat:wght@500;700&family=Open+Sans&display=swap");
+
 *,
 *::after,
 *::before {
@@ -8,4 +10,8 @@ html,
 body {
   margin: 0;
   padding: 0;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
