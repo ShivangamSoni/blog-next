@@ -1,9 +1,15 @@
 import { useCallback, useEffect, useState } from "react";
+
+import { useRouter } from "next/router";
 import Link from "next/link";
+
+import axios from "axios";
 
 import styles from "../styles.module.css";
 
 const Register = () => {
+  const { push } = useRouter();
+
   const [name, setName] = useState("");
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
@@ -126,7 +132,25 @@ const Register = () => {
 
     const newUser = { name, email, username: userName, password };
 
-    // TODO: Call Register API
+    try {
+      const { data } = await axios.post("/api/auth/register", newUser);
+
+      if (!data.success) {
+        setFormError(data.message);
+      } else {
+        setFormSuccess(data.message);
+
+        setName("");
+        setUserName("");
+        setEmail("");
+        setPassword("");
+        setCPassword("");
+
+        setTimeout(() => push("/signin"), 1000);
+      }
+    } catch (e) {
+      setFormError(e.response.data.message);
+    }
   };
 
   useEffect(() => {
