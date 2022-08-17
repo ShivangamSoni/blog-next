@@ -1,34 +1,106 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Blog Next
 
-## Getting Started
+This is a Blogging Website, Created Using NextJS, MongoDB, Next-Auth & Modular
+CSS.
 
-First, run the development server:
+[Live Demo](https://blog-next-six-ashy.vercel.app/)
 
-```bash
-npm run dev
-# or
-yarn dev
+# Running Project
+
+- Add Environment variables:
+
+```
+MONGODB_URI="<URI for MongoDB Access>"
+
+NEXTAUTH_SECRET="<Randomly Generated SECRETE Key required by Next Auth>"
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Create a Build
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```bash
+$ npm run build
+-- or --
+$ yarn build
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+- Start Server
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```bash
+$ npm run start
+-- or --
+$ yarn start
+```
 
-## Learn More
+# Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+## Pages:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Home**: Listing of All Blogs
+2. **Contact Us**: A Contact Us Form
+3. **Register**: User Registration Form
+4. **Login**: User Login Form
+5. **Dashboard**: User Profile
+6. **Post/[slug]**: Post Details
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## APIs:
 
-## Deploy on Vercel
+1. **/api/user**: GET access to Registered Users Profile Details
+2. **/api/contact**: POST Contact Form data, which is stored in MongoDB
+3. **/api/auth/register**: POST Registration API, User Data is stored in
+   MongoDB.
+4. **/api/auth/[...nextauth]**: Dynamic API Route used by **next-auth** for
+   Login, SignOut & for maintaining the USer Session
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Backend Details:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The backend is using following Technologies;
+
+1. **Node**: For API & Accessing Blog MD
+2. **Next** JS: For SSR & APIs
+3. **MongoDB**: Storing User & Contact Form Data
+4. **BCrypt**: For Hashing the password before storing & for securely comparing
+   passwords while login
+5. **Next-Auth**: For Handling User Auth. I've configured it to use JWT.
+
+The Blog Data is stored as Markdowns & Rendered on Front-End
+
+# Frontend Details
+
+The Front-End is using following technologies:
+
+1. **Next JS**: For SSR, SSG
+2. **React**: Used underneath NextJS for creating UI in form of Components
+3. **Axios**: For Sending Requests using API
+4. **Next-Auth**: For Accessing Session, verifying Authentication Status.
+5. **React-Markdown**: For Rendering the Blog Markdowns using Custom Styling
+6. **React-Icons**: For SVG Icons used on the Site
+
+# Site Screenshots
+
+## Home
+
+![Home](./Screenshots/Home.png)
+
+## Contact Us
+
+![Contact US](./Screenshots/Contact.png)
+
+## Register
+
+![Register](./Screenshots/Register.png)
+
+## SignIn
+
+![SignIn](./Screenshots/SignIn.png)
+
+## Dashboard
+
+![Dashboard](./Screenshots/Dashboard.png)
+
+## Post Details
+
+![Post Details](./Screenshots/PostDetails.png)
+
+## Notification
+
+![Notification](./Screenshots/Notification.png)
