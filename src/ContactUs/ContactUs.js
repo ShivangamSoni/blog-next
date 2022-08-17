@@ -1,4 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
+
+import axios from "axios";
+
 import styles from "./styles.module.css";
 
 const ContactUs = () => {
@@ -57,14 +60,18 @@ const ContactUs = () => {
     return true;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!validateForm()) return;
 
     const contactDetails = { name, email, message };
 
-    // Todo: call Contact us API
+    try {
+      const { data } = await axios.post("/api/contact", contactDetails);
+    } catch (e) {
+      setFormError(e.response.data.message);
+    }
   };
 
   useEffect(() => {
