@@ -18,6 +18,24 @@
   justify-content: space-evenly;
 }
 
+.logout {
+  appearance: none;
+  background-color: #fff;
+  text-decoration: none;
+  outline: 1px solid currentColor;
+  border: none;
+  color: #f08080;
+  cursor: pointer;
+  display: inline-block;
+  padding: 0.3rem 1rem;
+  transition: box-shadow 300ms linear;
+}
+
+.logout:hover {
+  box-shadow: 0 0 0.5em currentColor, 0 0 0.2em currentColor;
+  text-shadow: 0 0 1px currentColor;
+}
+
 @media screen and (max-width: 770px) {
   .linkList {
     flex-flow: column nowrap;

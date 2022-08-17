@@ -1,5 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
+
 import Link from "next/link";
+
+import { signIn } from "next-auth/react";
 
 import styles from "../styles.module.css";
 
@@ -59,7 +62,16 @@ const SignIn = () => {
 
     if (!validateForm()) return;
 
-    // TODO: Call Login API
+    const response = await signIn("credentials", {
+      redirect: false,
+      email,
+      password,
+    });
+
+    if (!response.ok) {
+      setFormError(response.error);
+    } else {
+    }
   };
 
   useEffect(() => {
