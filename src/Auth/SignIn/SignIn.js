@@ -1,12 +1,15 @@
 import { useCallback, useEffect, useState } from "react";
 
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 import { signIn } from "next-auth/react";
 
 import styles from "../styles.module.css";
 
 const SignIn = () => {
+  const { replace } = useRouter();
+
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
@@ -71,6 +74,7 @@ const SignIn = () => {
     if (!response.ok) {
       setFormError(response.error);
     } else {
+      replace("/dashboard");
     }
   };
 

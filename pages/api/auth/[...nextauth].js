@@ -3,7 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { verifyPassword } from "../../../helpers/auth";
 import connectToDB from "../../../helpers/db";
 
-export default NextAuth({
+export const authOptions = {
   session: {
     strategy: "jwt",
     maxAge: 60 * 60 * 2, // Expires in 2 Hours,
@@ -34,4 +34,6 @@ export default NextAuth({
       },
     }),
   ],
-});
+};
+
+export default NextAuth(authOptions);
